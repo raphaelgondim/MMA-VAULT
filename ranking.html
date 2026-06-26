@@ -62,7 +62,9 @@
         <div class="section-header">
           <span class="section-title">Pound for Pound</span>
 
-          <span class="section-desc">Todos os lutadores, todas as categorias</span>
+          <span class="section-desc"
+            >Todos os lutadores, todas as categorias</span
+          >
         </div>
 
         <div id="lista-p4p"></div>
@@ -104,14 +106,21 @@
         <div class="section-header">
           <span class="section-title">GOAT Score</span>
 
-          <span class="section-desc">Pontuação combinada — mínimo 3 lutas para entrar</span>
+          <span class="section-desc"
+            >Pontuação combinada — mínimo 3 lutas para entrar</span
+          >
         </div>
 
         <div id="lista-goat"></div>
       </section>
     </main>
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./js/cloud-sync.js"></script>
     <script src="./js/sidebar.js"></script>
+    <script src="./js/ranking-engine.js"></script>
     <script src="./js/ranking.js"></script>
   </body>
 </html>

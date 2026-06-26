@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
   const grid = document.getElementById("gridEventos");
-
   if (!grid) return;
 
-  renderizarEventos(eventos);
+  // espera sincronizar com a nuvem antes de renderizar
+  iniciarNuvem(() => {
+    renderizarEventos(getEventosOrdenados());
+  });
 
   document.getElementById("pesquisa").addEventListener("input", function () {
     const termo = this.value.toLowerCase();
@@ -90,6 +91,9 @@ function excluirEvento(id) {
   let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
   eventos = eventos.filter((e) => e.id !== id);
   localStorage.setItem("eventos", JSON.stringify(eventos));
+
+  recalcularRanking();
+  salvarEventosNaNuvem();
 
   renderizarEventos(getEventosOrdenados());
 }

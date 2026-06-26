@@ -116,46 +116,48 @@ btnAdicionarLuta.addEventListener("click", () => {
   containerLutas.appendChild(div);
 });
 
-// — carrega dados se for modo edição
-if (idEditar) {
-  const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
-  const eventoEditar = eventos.find((e) => e.id === Number(idEditar));
+// — espera sincronizar com a nuvem antes de carregar dados de edição —
+iniciarNuvem(() => {
+  if (idEditar) {
+    const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+    const eventoEditar = eventos.find((e) => e.id === Number(idEditar));
 
-  if (eventoEditar) {
-    document.querySelector(".topo h1").textContent = "Editar Evento";
-    document.querySelector(".topo p").textContent = "Atualize os dados do evento.";
-    document.querySelector(".btn-primario").textContent = "Salvar Alterações";
-    document.getElementById("nome").value = eventoEditar.nome || "";
-    document.getElementById("numero").value = eventoEditar.numero || "";
-    document.getElementById("data").value = eventoEditar.data || "";
-    document.getElementById("notaEvento").value = eventoEditar.notaEvento || "";
-    document.getElementById("linkEvento").value = eventoEditar.linkEvento || "";
-    document.getElementById("linkESPN").value = eventoEditar.linkESPN || "";
-    document.getElementById("observacoes").value = eventoEditar.observacoes || "";
+    if (eventoEditar) {
+      document.querySelector(".topo h1").textContent = "Editar Evento";
+      document.querySelector(".topo p").textContent = "Atualize os dados do evento.";
+      document.querySelector(".btn-primario").textContent = "Salvar Alterações";
+      document.getElementById("nome").value = eventoEditar.nome || "";
+      document.getElementById("numero").value = eventoEditar.numero || "";
+      document.getElementById("data").value = eventoEditar.data || "";
+      document.getElementById("notaEvento").value = eventoEditar.notaEvento || "";
+      document.getElementById("linkEvento").value = eventoEditar.linkEvento || "";
+      document.getElementById("linkESPN").value = eventoEditar.linkESPN || "";
+      document.getElementById("observacoes").value = eventoEditar.observacoes || "";
 
-    if (eventoEditar.poster) {
-      posterBase64 = eventoEditar.poster;
-      const preview = document.getElementById("previewPoster");
-      preview.src = posterBase64;
-      preview.style.display = "block";
+      if (eventoEditar.poster) {
+        posterBase64 = eventoEditar.poster;
+        const preview = document.getElementById("previewPoster");
+        preview.src = posterBase64;
+        preview.style.display = "block";
+      }
+
+      eventoEditar.lutas?.forEach((luta) => {
+        btnAdicionarLuta.click();
+        const cards = document.querySelectorAll(".luta-card");
+        const card = cards[cards.length - 1];
+        card.querySelector(".lutador1").value = luta.lutador1 || "";
+        card.querySelector(".lutador2").value = luta.lutador2 || "";
+        card.querySelector(".vencedor").value = luta.vencedor || "";
+        card.querySelector(".metodo").value = luta.metodo || "";
+        card.querySelector(".categoria").value = luta.categoria || "";
+        card.querySelector(".cinturao").value = luta.cinturao || "";
+        card.querySelector(".posicaoCard").value = luta.posicaoCard || "";
+        card.querySelector(".notaLuta").value = luta.nota || "";
+        card.querySelector(".review").value = luta.review || "";
+      });
     }
-
-    eventoEditar.lutas?.forEach((luta) => {
-      btnAdicionarLuta.click();
-      const cards = document.querySelectorAll(".luta-card");
-      const card = cards[cards.length - 1];
-      card.querySelector(".lutador1").value = luta.lutador1 || "";
-      card.querySelector(".lutador2").value = luta.lutador2 || "";
-      card.querySelector(".vencedor").value = luta.vencedor || "";
-      card.querySelector(".metodo").value = luta.metodo || "";
-      card.querySelector(".categoria").value = luta.categoria || "";
-      card.querySelector(".cinturao").value = luta.cinturao || "";
-      card.querySelector(".posicaoCard").value = luta.posicaoCard || "";
-      card.querySelector(".notaLuta").value = luta.nota || "";
-      card.querySelector(".review").value = luta.review || "";
-    });
   }
-}
+});
 
 // — submit
 form.addEventListener("submit", (e) => {
@@ -200,11 +202,19 @@ form.addEventListener("submit", (e) => {
     eventos = eventos.map((e) =>
       e.id === Number(idEditar) ? { ...evento, id: Number(idEditar) } : e
     );
+    localStorage.setItem("eventos", JSON.stringify(eventos));
+    recalcularRanking();
+    salvarEventosNaNuvem();
+
     alert("Evento atualizado!");
     location.href = "eventos.html";
   } else {
     evento.id = Date.now();
     eventos.push(evento);
+    localStorage.setItem("eventos", JSON.stringify(eventos));
+    recalcularRanking();
+    salvarEventosNaNuvem();
+
     alert("Evento salvo!");
 
     form.reset();
@@ -213,6 +223,4 @@ form.addEventListener("submit", (e) => {
     document.getElementById("previewPoster").style.display = "none";
     posterBase64 = "";
   }
-
-  localStorage.setItem("eventos", JSON.stringify(eventos));
 });

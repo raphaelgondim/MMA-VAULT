@@ -60,7 +60,11 @@
 
       <section class="resumo">
         <div class="poster-wrap">
-          <img id="posterEvento" src="./img/sem-poster.png" alt="Poster do evento" />
+          <img
+            id="posterEvento"
+            src="./img/sem-poster.png"
+            alt="Poster do evento"
+          />
         </div>
 
         <div class="dados-gerais">
@@ -89,7 +93,7 @@
             <span class="dado-valor" id="observacoesEvento">—</span>
           </div>
 
-          <div class="dado-item full" id="linkWrap" style="display:none">
+          <div class="dado-item full" id="linkWrap" style="display: none">
             <a id="linkEvento" href="#" target="_blank" class="btn-link">
               🔗 Ver evento completo
             </a>
@@ -104,6 +108,10 @@
       </section>
     </main>
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./js/cloud-sync.js"></script>
     <script src="./js/sidebar.js"></script>
     <script src="./js/evento.js"></script>
   </body>
