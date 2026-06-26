@@ -6,33 +6,26 @@ const posterInput = document.getElementById("poster");
 let contadorLutas = 0;
 let posterBase64 = "";
 
-// — verifica se é modo edição
 const params = new URLSearchParams(location.search);
 const idEditar = params.get("editar");
 
 // — upload do poster
 posterInput.addEventListener("change", function () {
   const arquivo = this.files[0];
-
   if (!arquivo) return;
-
   const reader = new FileReader();
-
   reader.onload = function (e) {
     posterBase64 = e.target.result;
-
     const preview = document.getElementById("previewPoster");
     preview.src = posterBase64;
     preview.style.display = "block";
   };
-
   reader.readAsDataURL(arquivo);
 });
 
 // — adicionar luta
 btnAdicionarLuta.addEventListener("click", () => {
   contadorLutas++;
-
   const div = document.createElement("div");
   div.classList.add("luta-card");
 
@@ -46,7 +39,7 @@ btnAdicionarLuta.addEventListener("click", () => {
 
       <input type="text" class="lutador1" placeholder="Lutador 1">
       <input type="text" class="lutador2" placeholder="Lutador 2">
-      <input type="text" class="vencedor" placeholder="Vencedor">
+      <input type="text" class="vencedor" placeholder="Vencedor (deixe vazio se empate)">
 
       <select class="metodo">
         <option value="">Método</option>
@@ -54,6 +47,7 @@ btnAdicionarLuta.addEventListener("click", () => {
         <option>Finalização</option>
         <option>Decisão</option>
         <option>Desqualificação</option>
+        <option>Empate</option>
       </select>
 
       <select class="categoria">
@@ -95,6 +89,14 @@ btnAdicionarLuta.addEventListener("click", () => {
         <option>Early Prelim</option>
       </select>
 
+      <select class="lutaDaNoite">
+        <option value="">Luta da Noite</option>
+        <option>Fight of the Night</option>
+        <option>Performance of the Night</option>
+        <option>KO of the Night</option>
+        <option>Submission of the Night</option>
+      </select>
+
       <input
         type="number"
         class="notaLuta"
@@ -109,14 +111,11 @@ btnAdicionarLuta.addEventListener("click", () => {
     </div>
   `;
 
-  div.querySelector(".btn-remover").addEventListener("click", () => {
-    div.remove();
-  });
-
+  div.querySelector(".btn-remover").addEventListener("click", () => div.remove());
   containerLutas.appendChild(div);
 });
 
-// — espera sincronizar com a nuvem antes de carregar dados de edição —
+// — carrega dados de edição
 iniciarNuvem(() => {
   if (idEditar) {
     const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
@@ -126,6 +125,7 @@ iniciarNuvem(() => {
       document.querySelector(".topo h1").textContent = "Editar Evento";
       document.querySelector(".topo p").textContent = "Atualize os dados do evento.";
       document.querySelector(".btn-primario").textContent = "Salvar Alterações";
+
       document.getElementById("nome").value = eventoEditar.nome || "";
       document.getElementById("numero").value = eventoEditar.numero || "";
       document.getElementById("data").value = eventoEditar.data || "";
@@ -152,6 +152,7 @@ iniciarNuvem(() => {
         card.querySelector(".categoria").value = luta.categoria || "";
         card.querySelector(".cinturao").value = luta.cinturao || "";
         card.querySelector(".posicaoCard").value = luta.posicaoCard || "";
+        card.querySelector(".lutaDaNoite").value = luta.lutaDaNoite || "";
         card.querySelector(".notaLuta").value = luta.nota || "";
         card.querySelector(".review").value = luta.review || "";
       });
@@ -175,6 +176,7 @@ form.addEventListener("submit", (e) => {
       categoria: luta.querySelector(".categoria").value,
       cinturao: luta.querySelector(".cinturao").value,
       posicaoCard: luta.querySelector(".posicaoCard").value,
+      lutaDaNoite: luta.querySelector(".lutaDaNoite").value,
       nota: parseFloat(luta.querySelector(".notaLuta").value) || null,
       review: luta.querySelector(".review").value,
       avaliada: false,
@@ -190,8 +192,6 @@ form.addEventListener("submit", (e) => {
     notaEvento: document.getElementById("notaEvento").value,
     observacoes: document.getElementById("observacoes").value,
     poster: posterBase64,
-    lutaDaNoite: "",
-    performanceDaNoite: "",
     assistiriaNovamente: false,
     lutas: lutas,
   };
@@ -205,7 +205,6 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("eventos", JSON.stringify(eventos));
     recalcularRanking();
     salvarEventosNaNuvem();
-
     alert("Evento atualizado!");
     location.href = "eventos.html";
   } else {
@@ -214,9 +213,7 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("eventos", JSON.stringify(eventos));
     recalcularRanking();
     salvarEventosNaNuvem();
-
     alert("Evento salvo!");
-
     form.reset();
     containerLutas.innerHTML = "";
     contadorLutas = 0;
