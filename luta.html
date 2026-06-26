@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Luta</title>
+
+    <link rel="stylesheet" href="./css/luta.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+
+        <a href="eventos.html"> 📅 Eventos </a>
+
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+
+        <a href="ranking.html"> 🏆 Ranking </a>
+
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+
+    <div id="containerLuta"></div>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/luta.js"></script>
+  </body>
+</html>

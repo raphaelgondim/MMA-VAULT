@@ -1,0 +1,326 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Segoe UI, sans-serif;
+}
+
+body {
+  display: flex;
+  background: #0f1115;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ── Sidebar (idêntica ao eventos.css) ── */
+
+.sidebar {
+  width: 280px;
+  background: #111827;
+  border-right: 1px solid #252b38;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.logo h1 {
+  color: #d20a0a;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.logo p {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover {
+  background: #d20a0a;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 25px;
+  border-top: 1px solid #252b38;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ── Main ── */
+
+main {
+  flex: 1;
+  padding: 40px;
+}
+
+/* ── Topo (igual ao eventos.css) ── */
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 35px;
+  gap: 20px;
+}
+
+.topo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.topo p {
+  color: #9ca3af;
+  margin-top: 8px;
+}
+
+/* ── Formulário ── */
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 1100px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: #1c212c;
+  color: white;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #374151;
+}
+
+select {
+  appearance: none;
+  cursor: pointer;
+}
+
+select option {
+  background: #1c212c;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ── Upload de poster ── */
+
+.upload-wrapper {
+  background: #1c212c;
+  border: 1px dashed #374151;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.upload-wrapper:hover {
+  border-color: #d20a0a;
+}
+
+.upload-wrapper input[type="file"] {
+  display: none;
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.upload-icon {
+  width: 40px;
+  height: 40px;
+  background: #252b38;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.upload-text {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+#previewPoster {
+  width: 140px;
+  border-radius: 8px;
+  display: none;
+  margin-top: 12px;
+}
+
+/* ── Divisor de seção ── */
+
+.divider {
+  border: none;
+  border-top: 1px solid #1c212c;
+  margin: 30px 0;
+}
+
+/* ── Cards de luta ── */
+
+.luta-card {
+  background: #1c212c;
+  border: 1px solid #252b38;
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.luta-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.luta-card-header h3 {
+  font-size: 1rem;
+  color: #e5e7eb;
+}
+
+.luta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.luta-grid .full {
+  grid-column: 1 / -1;
+}
+
+.luta-card input,
+.luta-card select,
+.luta-card textarea {
+  background: #141820;
+  margin-bottom: 0;
+}
+
+/* ── Botões ── */
+
+.btn-primario {
+  background: #d20a0a;
+  border: none;
+  padding: 15px 24px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-primario:hover {
+  background: #b00808;
+}
+
+.btn-secundario {
+  background: transparent;
+  border: 1px solid #374151;
+  padding: 13px 20px;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.btn-secundario:hover {
+  border-color: #d20a0a;
+  color: white;
+}
+
+.btn-remover {
+  background: transparent;
+  border: 1px solid #7f1d1d;
+  padding: 7px 14px;
+  color: #fca5a5;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remover:hover {
+  background: #7f1d1d;
+  color: white;
+}
+
+#containerLutas {
+  margin-bottom: 16px;
+}

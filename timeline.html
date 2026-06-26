@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Timeline</title>
+
+    <link rel="stylesheet" href="./css/timeline.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+
+        <a href="eventos.html"> 📅 Eventos </a>
+
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+
+        <a href="ranking.html"> 🏆 Ranking </a>
+
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Timeline</h1>
+
+          <p>A história do UFC na sua perspectiva.</p>
+        </div>
+
+        <button class="btn-primario" id="btnNovoAcontecimento">
+          + Adicionar acontecimento
+        </button>
+      </header>
+
+      <div class="timeline-wrap">
+        <!-- linha central -->
+        <div class="linha-central"></div>
+
+        <!-- faixa superior: eventos -->
+        <div class="faixa faixa-superior" id="faixaEventos"></div>
+
+        <!-- faixa inferior: acontecimentos -->
+        <div class="faixa faixa-inferior" id="faixaAcontecimentos"></div>
+      </div>
+    </main>
+
+    <!-- Modal de adicionar acontecimento -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Novo acontecimento</h2>
+
+          <button class="btn-fechar" id="btnFecharModal">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <input
+            type="text"
+            id="inputTitulo"
+            placeholder="Título (ex: Dana White vende o UFC)"
+          />
+
+          <input type="date" id="inputData" />
+
+          <textarea
+            id="inputDescricao"
+            placeholder="Descrição (aparece ao passar o mouse)"
+          ></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
+
+          <button class="btn-salvar" id="btnSalvarAcontecimento">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/timeline.js"></script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0f1115;
+
+  color: white;
+
+  font-family:
+    Segoe UI,
+    sans-serif;
+
+  padding: 40px;
+}
+
+.container {
+  max-width: 900px;
+
+  margin: auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #1c212c;
+
+  padding: 25px;
+
+  border-radius: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  padding: 12px;
+
+  margin-top: 10px;
+
+  margin-bottom: 20px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #111827;
+
+  color: white;
+}
+
+textarea {
+  height: 180px;
+
+  resize: none;
+}
+
+button {
+  background: #d20a0a;
+
+  border: none;
+
+  color: white;
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    Segoe UI,
+    sans-serif;
+}
+
+body {
+  display: flex;
+  background: #0f1115;
+  color: white;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+
+  background: #111827;
+
+  border-right: 1px solid #252b38;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: 25px;
+}
+
+.sidebar h1 {
+  color: #d20a0a;
+  margin-bottom: 40px;
+}
+
+.sidebar nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 40px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+
+  color: white;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover {
+  background: #d20a0a;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #252b38;
+}
+
+.info {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: #d20a0a;
+}
+
+.logo h1 {
+  color: #d20a0a;
+
+  font-size: 2rem;
+
+  margin-bottom: 5px;
+}
+
+.logo p {
+  color: #9ca3af;
+
+  font-size: 0.9rem;
+}

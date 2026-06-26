@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard — MMA Vault</title>
+
+    <link rel="stylesheet" href="./css/dashboard.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do UFC</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+
+        <a href="eventos.html"> 📅 Eventos </a>
+
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+
+        <a href="ranking.html"> 🏆 Ranking </a>
+
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Dashboard</h1>
+
+          <p>Visão geral do seu arquivo UFC.</p>
+        </div>
+      </header>
+
+      <section class="cards">
+        <div class="card">
+          <span class="card-label">Eventos avaliados</span>
+
+          <p class="card-valor" id="totalEventos">0</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Lutas registradas</span>
+
+          <p class="card-valor" id="totalLutas">0</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Média dos eventos</span>
+
+          <p class="card-valor" id="mediaEventos">—</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Melhor evento</span>
+
+          <p class="card-valor card-nome" id="melhorEvento">—</p>
+
+          <span class="card-sub" id="notaMelhor"></span>
+        </div>
+      </section>
+
+      <section class="ultimos-eventos">
+        <h2 class="section-title">Últimos eventos</h2>
+
+        <div id="listaEventos"></div>
+      </section>
+    </main>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/dashboard.js"></script>
+  </body>
+</html>

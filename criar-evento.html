@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Criar Evento</title>
+
+    <link rel="stylesheet" href="./css/criar-evento.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+
+        <a href="eventos.html"> 📅 Eventos </a>
+
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+
+        <a href="ranking.html"> 🏆 Ranking </a>
+
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="topo">
+        <div>
+          <h1>Novo Evento</h1>
+
+          <p>Preencha os dados e adicione as lutas.</p>
+        </div>
+      </div>
+
+      <form id="formEvento">
+        <div class="form-section">
+          <div class="form-section-label">Informações gerais</div>
+
+          <div class="form-grid">
+            <input
+              type="text"
+              id="nome"
+              placeholder="Nome do evento"
+              required
+            />
+
+            <input type="number" id="numero" placeholder="Número UFC" />
+
+            <input type="date" id="data" />
+
+            <input
+              type="number"
+              min="0"
+              max="10"
+              step="0.1"
+              id="notaEvento"
+              placeholder="Nota do evento (0–10)"
+            />
+
+            <div class="upload-wrapper full">
+              <label class="upload-label" for="poster">
+                <div class="upload-icon">🖼️</div>
+
+                <div class="upload-text">
+                  Poster do Evento — clique para escolher
+                </div>
+              </label>
+
+              <input type="file" id="poster" accept="image/*" />
+            </div>
+
+            <img id="previewPoster" alt="Preview do poster" />
+
+            <input
+              type="url"
+              id="linkEvento"
+              placeholder="Link do evento (Youtube)"
+              class="full"
+            />
+
+            <input
+              type="url"
+              id="linkESPN"
+              placeholder="Link ESPN"
+              class="full"
+            />
+
+            <textarea
+              id="observacoes"
+              placeholder="Observações"
+              class="full"
+            ></textarea>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="form-section">
+          <div class="form-section-label">Lutas</div>
+
+          <div id="containerLutas"></div>
+
+          <button type="button" id="btnAdicionarLuta" class="btn-secundario">
+            ＋ Adicionar luta
+          </button>
+        </div>
+
+        <button type="submit" class="btn-primario">Salvar Evento</button>
+      </form>
+    </main>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/criar-evento.js"></script>
+  </body>
+</html>

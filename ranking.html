@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ranking — MMA Vault</title>
+
+    <link rel="stylesheet" href="./css/ranking.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do UFC</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+        <a href="eventos.html"> 📅 Eventos </a>
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+        <a href="ranking.html"> 🏆 Ranking </a>
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Ranking</h1>
+
+          <p>Calculado automaticamente pelos eventos registrados.</p>
+        </div>
+      </header>
+
+      <!-- abas -->
+      <div class="abas">
+        <button class="aba ativa" data-aba="p4p">🥇 P4P</button>
+
+        <button class="aba" data-aba="categoria">⚖️ Por Categoria</button>
+
+        <button class="aba" data-aba="goat">🐐 GOAT</button>
+      </div>
+
+      <!-- P4P -->
+      <section class="painel ativa" id="painel-p4p">
+        <div class="section-header">
+          <span class="section-title">Pound for Pound</span>
+
+          <span class="section-desc">Todos os lutadores, todas as categorias</span>
+        </div>
+
+        <div id="lista-p4p"></div>
+      </section>
+
+      <!-- Por Categoria -->
+      <section class="painel" id="painel-categoria">
+        <div class="section-header">
+          <span class="section-title">Por Categoria de Peso</span>
+
+          <span class="section-desc">Selecione a categoria</span>
+        </div>
+
+        <select id="selectCategoria">
+          <option value="">Selecione uma categoria</option>
+          <optgroup label="— Masculino —">
+            <option>Peso Mosca (até 56 kg)</option>
+            <option>Peso Galo (até 61 kg)</option>
+            <option>Peso Pena (até 65 kg)</option>
+            <option>Peso Leve (até 70 kg)</option>
+            <option>Peso Meio-Médio (até 77 kg)</option>
+            <option>Peso Médio (até 83 kg)</option>
+            <option>Peso Meio-Pesado (até 93 kg)</option>
+            <option>Peso Pesado (até 120 kg)</option>
+          </optgroup>
+          <optgroup label="— Feminino —">
+            <option>Feminino Peso Palha (até 52 kg)</option>
+            <option>Feminino Peso Mosca (até 56 kg)</option>
+            <option>Feminino Peso Galo (até 61 kg)</option>
+            <option>Feminino Peso Pena (até 65 kg)</option>
+          </optgroup>
+        </select>
+
+        <div id="lista-categoria"></div>
+      </section>
+
+      <!-- GOAT -->
+      <section class="painel" id="painel-goat">
+        <div class="section-header">
+          <span class="section-title">GOAT Score</span>
+
+          <span class="section-desc">Pontuação combinada — mínimo 3 lutas para entrar</span>
+        </div>
+
+        <div id="lista-goat"></div>
+      </section>
+    </main>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/ranking.js"></script>
+  </body>
+</html>

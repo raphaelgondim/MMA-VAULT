@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Segoe UI, sans-serif;
+}
+
+body {
+  display: flex;
+  background: #0f1115;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+
+.sidebar {
+  width: 280px;
+  background: #111827;
+  border-right: 1px solid #252b38;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  flex-shrink: 0;
+}
+
+.logo h1 {
+  color: #d20a0a;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.logo p {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover {
+  background: #d20a0a;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 25px;
+  border-top: 1px solid #252b38;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ── Main ── */
+
+main {
+  flex: 1;
+  padding: 40px;
+  max-width: 900px;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.topo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.topo p {
+  color: #9ca3af;
+  margin-top: 8px;
+}
+
+/* ── Abas ── */
+
+.abas {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #252b38;
+  padding-bottom: 0;
+}
+
+.aba {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+  border-radius: 0;
+}
+
+.aba:hover {
+  color: #e5e7eb;
+}
+
+.aba.ativa {
+  color: white;
+  border-bottom-color: #d20a0a;
+}
+
+/* ── Painéis ── */
+
+.painel {
+  display: none;
+}
+
+.painel.ativa {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.section-desc {
+  font-size: 0.78rem;
+  color: #4b5563;
+}
+
+/* ── Select de categoria ── */
+
+#selectCategoria {
+  width: 100%;
+  padding: 13px 16px;
+  background: #1c212c;
+  border: 1px solid #252b38;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  outline: none;
+  cursor: pointer;
+}
+
+#selectCategoria:focus {
+  border-color: #374151;
+}
+
+/* ── Card do lutador ── */
+
+.lutador-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1c212c;
+  border: 1px solid #252b38;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+}
+
+.lutador-card:hover {
+  border-color: #374151;
+}
+
+/* posição */
+.posicao {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4b5563;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.posicao.ouro   { color: #f59e0b; }
+.posicao.prata  { color: #9ca3af; }
+.posicao.bronze { color: #b45309; }
+
+/* avatar */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #141820;
+  border: 1px solid #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d20a0a;
+  flex-shrink: 0;
+}
+
+/* info */
+.lutador-info {
+  flex: 1;
+}
+
+.lutador-nome {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.lutador-stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.stat strong {
+  color: #9ca3af;
+}
+
+/* pontuação */
+.pontuacao {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.pontuacao-valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #d20a0a;
+  display: block;
+}
+
+.pontuacao-label {
+  font-size: 0.65rem;
+  color: #4b5563;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* badges */
+.badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #141820;
+  border: 1px solid #374151;
+  color: #9ca3af;
+}
+
+.badge.cinturao {
+  border-color: #78350f;
+  color: #f59e0b;
+  background: #1c1207;
+}
+
+.badge.sequencia {
+  border-color: #14532d;
+  color: #4ade80;
+  background: #071a0f;
+}
+
+/* vazio */
+.vazio {
+  color: #4b5563;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 30px 0;
+  text-align: center;
+}
+
+/* GOAT — destaque top 1 */
+.lutador-card.goat-top {
+  border-color: #78350f;
+  background: #1a1508;
+}
+
+.lutador-card.goat-top .posicao {
+  color: #f59e0b;
+  font-size: 1.3rem;
+}
+
+/* ── Drag & Drop ── */
+
+.lista-drag {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lutador-card.arrastando {
+  opacity: 0.4;
+  border-style: dashed;
+}
+
+.drag-handle {
+  font-size: 1.2rem;
+  color: #374151;
+  cursor: grab;
+  padding: 0 4px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* ── Campeão ── */
+
+.campeao-card {
+  border-color: #78350f;
+  background: #1a1508;
+  margin-bottom: 6px;
+}
+
+.avatar-campeao {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.ranking-divisor {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #374151;
+  padding: 16px 0 10px;
+  text-align: center;
+}
+
+/* ── Botão remover do ranking ── */
+.btn-remover-ranking {
+  background: transparent;
+  border: none;
+  color: #374151;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+.btn-remover-ranking:hover {
+  color: #d20a0a;
+}

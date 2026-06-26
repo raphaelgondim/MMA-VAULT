@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Eventos</title>
+
+    <link rel="stylesheet" href="./css/eventos.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+
+        <a href="eventos.html"> 📅 Eventos </a>
+
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+
+        <a href="ranking.html"> 🏆 Ranking </a>
+
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info">
+          <span> Eventos: </span>
+
+          <strong id="totalEventosSidebar"> 0 </strong>
+        </div>
+
+        <div class="info">
+          <span> Lutas: </span>
+
+          <strong id="totalLutasSidebar"> 0 </strong>
+        </div>
+      </div>
+    </aside>
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Eventos Avaliados</h1>
+
+          <p>Todos os eventos que você já cadastrou.</p>
+        </div>
+
+        <div class="acoes">
+          <input type="text" id="pesquisa" placeholder="Pesquisar evento..." />
+
+          <select id="ordenacao">
+            <option value="novo">Mais recentes</option>
+
+            <option value="antigo">Mais antigos</option>
+
+            <option value="nota">Melhor nota</option>
+          </select>
+        </div>
+      </header>
+      <section id="gridEventos"></section>
+    </main>
+
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/eventos.js"></script>
+  </body>
+</html>
