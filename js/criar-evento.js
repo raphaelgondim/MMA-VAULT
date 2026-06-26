@@ -73,7 +73,7 @@ btnAdicionarLuta.addEventListener("click", () => {
 
       <select class="cinturao">
         <option value="">Cinturão</option>
-        <option>Sem cinturão</option>
+        <option selected>Sem cinturão</option>
         <option>Cinturão Unificado</option>
         <option>Cinturão Interino</option>
         <option>Cinturão BMF</option>
@@ -87,14 +87,6 @@ btnAdicionarLuta.addEventListener("click", () => {
         <option>Card Principal</option>
         <option>Prelim</option>
         <option>Early Prelim</option>
-      </select>
-
-      <select class="lutaDaNoite">
-        <option value="">Luta da Noite</option>
-        <option>Fight of the Night</option>
-        <option>Performance of the Night</option>
-        <option>KO of the Night</option>
-        <option>Submission of the Night</option>
       </select>
 
       <input
@@ -132,6 +124,7 @@ iniciarNuvem(() => {
       document.getElementById("notaEvento").value = eventoEditar.notaEvento || "";
       document.getElementById("linkEvento").value = eventoEditar.linkEvento || "";
       document.getElementById("linkESPN").value = eventoEditar.linkESPN || "";
+      document.getElementById("lutaDaNoite").value = eventoEditar.lutaDaNoite || "";
       document.getElementById("observacoes").value = eventoEditar.observacoes || "";
 
       if (eventoEditar.poster) {
@@ -150,9 +143,8 @@ iniciarNuvem(() => {
         card.querySelector(".vencedor").value = luta.vencedor || "";
         card.querySelector(".metodo").value = luta.metodo || "";
         card.querySelector(".categoria").value = luta.categoria || "";
-        card.querySelector(".cinturao").value = luta.cinturao || "";
+        card.querySelector(".cinturao").value = luta.cinturao || "Sem cinturão";
         card.querySelector(".posicaoCard").value = luta.posicaoCard || "";
-        card.querySelector(".lutaDaNoite").value = luta.lutaDaNoite || "";
         card.querySelector(".notaLuta").value = luta.nota || "";
         card.querySelector(".review").value = luta.review || "";
       });
@@ -176,7 +168,6 @@ form.addEventListener("submit", (e) => {
       categoria: luta.querySelector(".categoria").value,
       cinturao: luta.querySelector(".cinturao").value,
       posicaoCard: luta.querySelector(".posicaoCard").value,
-      lutaDaNoite: luta.querySelector(".lutaDaNoite").value,
       nota: parseFloat(luta.querySelector(".notaLuta").value) || null,
       review: luta.querySelector(".review").value,
       avaliada: false,
@@ -189,6 +180,7 @@ form.addEventListener("submit", (e) => {
     data: document.getElementById("data").value,
     linkEvento: document.getElementById("linkEvento").value,
     linkESPN: document.getElementById("linkESPN").value,
+    lutaDaNoite: document.getElementById("lutaDaNoite").value,
     notaEvento: document.getElementById("notaEvento").value,
     observacoes: document.getElementById("observacoes").value,
     poster: posterBase64,
