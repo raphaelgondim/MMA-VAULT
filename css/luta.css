@@ -180,3 +180,8 @@ body {
 
   font-size: 0.9rem;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

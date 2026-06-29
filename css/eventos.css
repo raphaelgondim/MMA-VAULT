@@ -196,3 +196,8 @@ header {
   background: #b91c1c;
   color: white;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

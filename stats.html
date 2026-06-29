@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estatísticas — MMA Vault</title>
+    <link rel="stylesheet" href="./css/stats.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+        <a href="eventos.html"> 📅 Eventos </a>
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+        <a href="lutadores.html"> 🥊 Lutadores </a>
+        <a href="ranking.html"> 🏆 Ranking </a>
+        <a href="stats.html"> 📊 Estatísticas </a>
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="info">
+          <span>Eventos:</span>
+          <strong id="totalEventosSidebar">0</strong>
+        </div>
+        <div class="info">
+          <span>Lutas:</span>
+          <strong id="totalLutasSidebar">0</strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Estatísticas</h1>
+          <p>Números gerais dos seus eventos registrados.</p>
+        </div>
+      </header>
+
+      <!-- cards de número -->
+      <div class="numeros-grid" id="numerosGrid"></div>
+
+      <div class="graficos">
+        <!-- métodos de vitória -->
+        <div class="grafico-card">
+          <div class="grafico-titulo">Métodos de vitória</div>
+          <div class="barras" id="barrasMetodos"></div>
+        </div>
+
+        <!-- categorias mais ativas -->
+        <div class="grafico-card">
+          <div class="grafico-titulo">Categorias com mais lutas</div>
+          <div class="barras" id="barrasCategorias"></div>
+        </div>
+
+        <!-- eventos por ano -->
+        <div class="grafico-card grafico-full">
+          <div class="grafico-titulo">Eventos por ano</div>
+          <div class="barras barras-horizontal" id="barrasAnos"></div>
+        </div>
+
+        <!-- distribuição de notas -->
+        <div class="grafico-card grafico-full">
+          <div class="grafico-titulo">Distribuição de notas dos eventos</div>
+          <div class="barras barras-horizontal" id="barrasNotas"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./js/cloud-sync.js"></script>
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/stats.js"></script>
+  </body>
+</html>

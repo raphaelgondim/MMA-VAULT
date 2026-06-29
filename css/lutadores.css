@@ -354,3 +354,8 @@ main { flex: 1; padding: 40px; }
   margin-top: 8px;
   border: 2px solid #374151;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

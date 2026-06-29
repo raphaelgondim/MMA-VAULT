@@ -483,3 +483,8 @@ main {
 .btn-salvar:hover {
   background: #b00808;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

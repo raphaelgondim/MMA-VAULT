@@ -324,3 +324,8 @@ textarea {
 #containerLutas {
   margin-bottom: 16px;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

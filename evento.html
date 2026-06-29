@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Evento</title>
-
     <link rel="stylesheet" href="./css/evento.css" />
   </head>
   <body>
     <aside class="sidebar">
       <div class="logo">
         <h1>MMA VAULT</h1>
-
         <p>Seu arquivo pessoal do MMA</p>
       </div>
 
@@ -22,20 +19,18 @@
         <a href="criar-evento.html"> ➕ Criar Evento </a>
         <a href="lutadores.html"> 🥊 Lutadores </a>
         <a href="ranking.html"> 🏆 Ranking </a>
+        <a href="stats.html"> 📊 Estatísticas </a>
         <a href="timeline.html"> ⏱️ Timeline </a>
       </nav>
 
       <div class="sidebar-footer">
         <div class="info">
-          <span> Eventos: </span>
-
-          <strong id="totalEventosSidebar"> 0 </strong>
+          <span>Eventos:</span>
+          <strong id="totalEventosSidebar">0</strong>
         </div>
-
         <div class="info">
-          <span> Lutas: </span>
-
-          <strong id="totalLutasSidebar"> 0 </strong>
+          <span>Lutas:</span>
+          <strong id="totalLutasSidebar">0</strong>
         </div>
       </div>
     </aside>
@@ -44,24 +39,17 @@
       <header class="topo">
         <div class="topo-esquerda">
           <a href="eventos.html" class="btn-voltar">← Eventos</a>
-
           <div>
             <h1 id="nomeEvento">Carregando...</h1>
-
             <p id="subtituloEvento">—</p>
           </div>
         </div>
-
         <a id="btnEditar" href="#" class="btn-editar">✏️ Editar evento</a>
       </header>
 
       <section class="resumo">
         <div class="poster-wrap">
-          <img
-            id="posterEvento"
-            src="./img/sem-poster.png"
-            alt="Poster do evento"
-          />
+          <img id="posterEvento" src="./img/sem-poster.png" alt="Poster do evento" />
         </div>
 
         <div class="dados-gerais">
@@ -85,14 +73,25 @@
             <span class="dado-valor nota-destaque" id="notaEvento">—</span>
           </div>
 
+          <div class="dado-item full" id="lutaDaNoiteWrap" style="display:none">
+            <span class="dado-label">Luta da Noite</span>
+            <span class="dado-valor" id="lutaDaNoiteEvento">—</span>
+          </div>
+
           <div class="dado-item full">
             <span class="dado-label">Observações</span>
             <span class="dado-valor" id="observacoesEvento">—</span>
           </div>
 
-          <div class="dado-item full" id="linkWrap" style="display: none">
+          <div class="dado-item full" id="linkWrap" style="display:none">
             <a id="linkEvento" href="#" target="_blank" class="btn-link">
-              🔗 Ver evento completo
+              ▶️ Assistir evento
+            </a>
+          </div>
+
+          <div class="dado-item full" id="espnWrap" style="display:none">
+            <a id="linkESPN" href="#" target="_blank" class="btn-link">
+              🔗 Ver no ESPN
             </a>
           </div>
         </div>
@@ -100,7 +99,6 @@
 
       <section class="lutas-section">
         <h2 class="section-title">Lutas</h2>
-
         <div id="listaLutas"></div>
       </section>
     </main>

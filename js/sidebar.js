@@ -19,3 +19,14 @@ const lutasElement = document.getElementById("totalLutasSidebar");
 if (lutasElement) {
   lutasElement.textContent = totalLutas;
 }
+
+// Cola esse trecho no final do seu sidebar.js existente
+(function () {
+  const atual = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".sidebar nav a").forEach((link) => {
+    const href = link.getAttribute("href").split("/").pop();
+    if (href === atual) {
+      link.classList.add("ativa");
+    }
+  });
+})();

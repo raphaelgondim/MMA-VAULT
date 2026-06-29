@@ -221,3 +221,8 @@ main {
   font-size: 0.9rem;
   padding: 20px 0;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

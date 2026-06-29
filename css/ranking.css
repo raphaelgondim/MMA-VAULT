@@ -384,3 +384,8 @@ main {
 .btn-remover-ranking:hover {
   color: #d20a0a;
 }
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
+  color: white;
+}

@@ -51,7 +51,8 @@ body {
   transition: 0.3s;
 }
 
-.sidebar nav a:hover {
+.sidebar nav a:hover,
+.sidebar nav a.ativa {
   background: #d20a0a;
 }
 
@@ -337,5 +338,41 @@ main {
 }
 
 .luta-link:hover {
+  color: white;
+}
+
+/* ── Badges de contexto nas lutas ── */
+
+.luta-badges-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.luta-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #141820;
+  border: 1px solid #374151;
+  color: #9ca3af;
+}
+
+.luta-badge-ouro {
+  border-color: #78350f;
+  color: #f59e0b;
+  background: #1c1207;
+}
+
+.luta-badge-verde {
+  border-color: #14532d;
+  color: #4ade80;
+  background: #071a0f;
+}
+
+.sidebar nav a.ativa {
+  background: #d20a0a;
   color: white;
 }
