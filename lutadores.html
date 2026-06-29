@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lutadores — MMA Vault</title>
+    <link rel="stylesheet" href="./css/lutadores.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>MMA VAULT</h1>
+        <p>Seu arquivo pessoal do MMA</p>
+      </div>
+      <nav>
+        <a href="index.html"> 🏠 Dashboard </a>
+        <a href="eventos.html"> 📅 Eventos </a>
+        <a href="criar-evento.html"> ➕ Criar Evento </a>
+        <a href="lutadores.html"> 🥊 Lutadores </a>
+        <a href="ranking.html"> 🏆 Ranking </a>
+        <a href="timeline.html"> ⏱️ Timeline </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="info">
+          <span>Eventos:</span>
+          <strong id="totalEventosSidebar">0</strong>
+        </div>
+        <div class="info">
+          <span>Lutas:</span>
+          <strong id="totalLutasSidebar">0</strong>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topo">
+        <div>
+          <h1>Lutadores</h1>
+          <p>Todos os lutadores dos seus eventos.</p>
+        </div>
+      </header>
+
+      <!-- filtros -->
+      <div class="filtros">
+        <input type="text" id="pesquisa" placeholder="Pesquisar lutador..." />
+
+        <select id="ordenacao">
+          <option value="alfa">A → Z</option>
+          <option value="vitorias">Mais vitórias</option>
+          <option value="lutas">Mais lutas</option>
+          <option value="nota">Melhor nota média</option>
+        </select>
+      </div>
+
+      <!-- grid de cards -->
+      <div id="gridLutadores"></div>
+
+      <!-- paginação -->
+      <div class="paginacao" id="paginacao"></div>
+    </main>
+
+    <!-- Modal perfil do lutador -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-titulo">
+            <div class="modal-avatar" id="modalAvatar"></div>
+            <div>
+              <h2 id="modalNome"></h2>
+              <p id="modalApelido" class="modal-apelido"></p>
+            </div>
+          </div>
+          <button class="btn-fechar" id="btnFechar">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- stats gerais -->
+          <div class="stats-grid" id="statsGrid"></div>
+
+          <!-- histórico de lutas -->
+          <div class="modal-section-label">Histórico de lutas</div>
+          <div id="historicoLutas"></div>
+
+          <!-- editar perfil -->
+          <div class="modal-section-label" style="margin-top: 24px">
+            Editar perfil
+          </div>
+          <div class="editar-perfil">
+            <div class="upload-wrapper">
+              <label class="upload-label" for="inputFoto">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Foto do lutador</div>
+              </label>
+              <input type="file" id="inputFoto" accept="image/*" />
+            </div>
+            <input
+              type="text"
+              id="inputNacionalidade"
+              placeholder="Nacionalidade / País"
+            />
+            <button class="btn-salvar-perfil" id="btnSalvarPerfil">
+              Salvar perfil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="./js/cloud-sync.js"></script>
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/lutadores.js"></script>
+  </body>
+</html>
