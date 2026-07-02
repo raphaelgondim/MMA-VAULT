@@ -1,10 +1,7 @@
 // ══════════════════════════════════════════
-//  CLOUD SYNC (Firebase) — backup automático
-//  Sincroniza apenas "eventos" (rankings/lutadores
-//  são recalculados localmente a partir disso)
+//  CLOUD SYNC (Firebase)
 // ══════════════════════════════════════════
 
-// 1) COLE AQUI o firebaseConfig que o console te deu:
 const firebaseConfig = {
   apiKey: "AIzaSyAzEvTT_Mkk6kRoQJvn11eJzxvaG1Rjfb8",
   authDomain: "mma-vault-15733.firebaseapp.com",
@@ -21,8 +18,7 @@ let _uid = null;
 let _pronto = false;
 let _filaDeEspera = [];
 
-// ── chamada na inicialização de cada página ──
-// callback() é chamado depois que a sincronização inicial terminar
+// ── inicializa e sincroniza, depois chama callback ──
 function iniciarNuvem(callback) {
   firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) {
@@ -55,35 +51,59 @@ async function _sincronizarNaInicializacao() {
   const ref = db.collection("backups").doc(_uid);
   const snap = await ref.get();
 
-  const localEventos = JSON.parse(localStorage.getItem("eventos")) || [];
-  const localAtualizado = Number(localStorage.getItem("eventosAtualizadoEm")) || 0;
+  const localEventos     = JSON.parse(localStorage.getItem("eventos")) || [];
+  const localAtualizado  = Number(localStorage.getItem("eventosAtualizadoEm")) || 0;
 
   if (snap.exists) {
-    const dados = snap.data();
-    const nuvemEventos = dados.eventos || [];
+    const dados          = snap.data();
+    const nuvemEventos   = dados.eventos || [];
     const nuvemAtualizado = dados.atualizadoEm || 0;
 
     if (nuvemAtualizado > localAtualizado) {
-      // nuvem é mais recente → usa ela
+      // nuvem é mais recente → usa ela e recalcula
       localStorage.setItem("eventos", JSON.stringify(nuvemEventos));
       localStorage.setItem("eventosAtualizadoEm", String(nuvemAtualizado));
+      // limpa rankings antigos para forçar recálculo limpo
+      localStorage.removeItem("rankings");
+      localStorage.removeItem("lutadores");
+      localStorage.removeItem("lutasProcessadas");
       if (typeof recalcularRanking === "function") recalcularRanking();
     } else if (localAtualizado > nuvemAtualizado && localEventos.length > 0) {
-      // local é mais recente → manda pra nuvem
-      await salvarEventosNaNuvem();
+      // local é mais recente → sobe para a nuvem sem sobrescrever local
+      await _subirParaNuvem(localEventos, localAtualizado);
     }
+    // se timestamps iguais: não faz nada, já está em sincronia
   } else if (localEventos.length > 0) {
-    // não existe backup ainda → cria a partir do que já tem localmente
+    // sem backup ainda → cria
     await salvarEventosNaNuvem();
   }
 }
 
-// ── chame isso depois de QUALQUER alteração em localStorage("eventos") ──
+// ── salva no Firebase com o timestamp que já está no localStorage ──
+// (evita gerar timestamp novo e criar divergência)
+async function _subirParaNuvem(eventos, timestamp) {
+  if (!_uid) return;
+  try {
+    await db.collection("backups").doc(_uid).set({
+      eventos,
+      atualizadoEm: timestamp,
+    });
+  } catch (e) {
+    console.error("Erro ao subir para a nuvem:", e);
+    mostrarStatusNuvem("erro");
+  }
+}
+
+// ── chame isso depois de salvar/editar eventos ──
 async function salvarEventosNaNuvem() {
   const executar = async () => {
     if (!_uid) return;
+
     const eventos = JSON.parse(localStorage.getItem("eventos")) || [];
-    const agora = Date.now();
+    const agora   = Date.now();
+
+    // salva o timestamp ANTES de mandar para a nuvem
+    // assim se a página mudar no meio, o local já é "mais recente"
     localStorage.setItem("eventosAtualizadoEm", String(agora));
 
     mostrarStatusNuvem("salvando");
@@ -106,36 +126,33 @@ async function salvarEventosNaNuvem() {
   await executar();
 }
 
-// ── indicador visual simples (opcional, cria sozinho se não existir) ──
+// ── indicador visual ──
 function mostrarStatusNuvem(estado) {
   let el = document.getElementById("statusNuvem");
   if (!el) {
     el = document.createElement("div");
     el.id = "statusNuvem";
-    el.style.position = "fixed";
-    el.style.bottom = "12px";
-    el.style.right = "12px";
-    el.style.padding = "6px 12px";
-    el.style.borderRadius = "8px";
-    el.style.fontSize = "12px";
-    el.style.fontFamily = "sans-serif";
-    el.style.zIndex = "9999";
-    el.style.transition = "opacity .3s";
+    el.style.cssText = `
+      position:fixed; bottom:12px; right:12px;
+      padding:6px 12px; border-radius:8px;
+      font-size:12px; font-family:sans-serif;
+      z-index:9999; transition:opacity .3s;
+    `;
     document.body.appendChild(el);
   }
 
   const estilos = {
     sincronizando: { texto: "🔄 Sincronizando...", cor: "#3b82f6" },
-    salvando: { texto: "☁️ Salvando...", cor: "#3b82f6" },
-    ok: { texto: "✅ Backup atualizado", cor: "#16a34a" },
-    erro: { texto: "⚠️ Falha ao sincronizar", cor: "#dc2626" },
+    salvando:      { texto: "☁️ Salvando...",      cor: "#3b82f6" },
+    ok:            { texto: "✅ Backup atualizado", cor: "#16a34a" },
+    erro:          { texto: "⚠️ Falha ao sincronizar", cor: "#dc2626" },
   };
 
   const s = estilos[estado] || estilos.ok;
-  el.textContent = s.texto;
+  el.textContent    = s.texto;
   el.style.background = s.cor;
-  el.style.color = "#fff";
-  el.style.opacity = "1";
+  el.style.color    = "#fff";
+  el.style.opacity  = "1";
 
   if (estado === "ok") {
     clearTimeout(el._timeout);
