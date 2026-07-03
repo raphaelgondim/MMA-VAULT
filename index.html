@@ -3,93 +3,278 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MMA Vault</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          Segoe UI,
+          sans-serif;
+      }
 
-    <title>Dashboard — MMA Vault</title>
+      body {
+        background: #0f1115;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
 
-    <link rel="stylesheet" href="./css/dashboard.css" />
+      /* ── partículas de fundo ── */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .particula {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #d20a0a;
+        border-radius: 50%;
+        opacity: 0;
+        animation: flutuar var(--dur) var(--delay) infinite ease-in-out;
+      }
+
+      @keyframes flutuar {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-20px) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* ── linha horizontal animada ── */
+      .linha-topo {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d20a0a, transparent);
+        animation: varrer 3s 0.5s ease forwards;
+        z-index: 1;
+      }
+
+      @keyframes varrer {
+        to {
+          left: 100%;
+        }
+      }
+
+      /* ── container central ── */
+      .splash {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        text-align: center;
+        animation: surgir 0.8s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes surgir {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── ícone/logo ── */
+      .logo-img {
+        width: 320px;
+        max-width: 80vw;
+        margin-bottom: 32px;
+        animation: pulsar 2s 1s ease-in-out infinite;
+        filter: drop-shadow(0 0 30px rgba(210, 10, 10, 0.5));
+      }
+
+      @keyframes pulsar {
+        0%,
+        100% {
+          transform: scale(1);
+          filter: drop-shadow(0 0 20px rgba(210, 10, 10, 0.4));
+        }
+        50% {
+          transform: scale(1.06);
+          filter: drop-shadow(0 0 35px rgba(210, 10, 10, 0.8));
+        }
+      }
+
+      /* ── título ── */
+      .titulo {
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: white;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .titulo span {
+        color: #d20a0a;
+      }
+
+      .subtitulo {
+        font-size: 0.95rem;
+        color: #6b7280;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 56px;
+      }
+
+      /* ── botão entrar ── */
+      .btn-entrar {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #d20a0a;
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 16px 44px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 24px rgba(210, 10, 10, 0.35);
+      }
+
+      .btn-entrar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        transition: left 0.4s;
+      }
+
+      .btn-entrar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(210, 10, 10, 0.55);
+      }
+
+      .btn-entrar:hover::before {
+        left: 100%;
+      }
+
+      .btn-entrar:active {
+        transform: translateY(0);
+      }
+
+      .btn-seta {
+        font-size: 1.1rem;
+        transition: transform 0.2s;
+      }
+
+      .btn-entrar:hover .btn-seta {
+        transform: translateX(4px);
+      }
+
+      /* ── rodapé ── */
+      .rodape {
+        position: fixed;
+        bottom: 20px;
+        font-size: 0.72rem;
+        color: #374151;
+        letter-spacing: 0.05em;
+        z-index: 2;
+      }
+
+      /* ── grade de fundo sutil ── */
+      .grade {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+
+      /* ── vinheta nas bordas ── */
+      .vinheta {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 40%,
+          #0f1115 100%
+        );
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
-    <aside class="sidebar">
-      <div class="logo">
-        <h1>MMA VAULT</h1>
+    <div class="grade"></div>
+    <div class="vinheta"></div>
+    <div class="linha-topo"></div>
+    <div class="bg" id="bg"></div>
 
-        <p>Seu arquivo pessoal do UFC</p>
-      </div>
+    <div class="splash">
+      <img src="./img/logo.png" alt="MMA Vault" class="logo-img" />
+      <p class="subtitulo">Seu arquivo pessoal do MMA</p>
 
-      <nav>
-        <a href="index.html"> 🏠 Dashboard </a>
-        <a href="eventos.html"> 📅 Eventos </a>
-        <a href="criar-evento.html"> ➕ Criar Evento </a>
-        <a href="lutadores.html"> 🥊 Lutadores </a>
-        <a href="ranking.html"> 🏆 Ranking </a>
-        <a href="stats.html"> 📊 Estatísticas </a>
-        <a href="timeline.html"> ⏱️ Timeline </a>
-      </nav>
+      <a href="dashboard.html" class="btn-entrar">
+        Entrar
+        <span class="btn-seta">→</span>
+      </a>
+    </div>
 
-      <div class="sidebar-footer">
-        <div class="info">
-          <span> Eventos: </span>
+    <p class="rodape">MMA VAULT · Arquivo pessoal</p>
 
-          <strong id="totalEventosSidebar"> 0 </strong>
-        </div>
+    <script>
+      // gera partículas aleatórias
+      const bg = document.getElementById("bg");
+      const total = 40;
 
-        <div class="info">
-          <span> Lutas: </span>
-
-          <strong id="totalLutasSidebar"> 0 </strong>
-        </div>
-      </div>
-    </aside>
-
-    <main>
-      <header class="topo">
-        <div>
-          <h1>Dashboard</h1>
-
-          <p>Visão geral do seu arquivo UFC.</p>
-        </div>
-      </header>
-
-      <section class="cards">
-        <div class="card">
-          <span class="card-label">Eventos avaliados</span>
-
-          <p class="card-valor" id="totalEventos">0</p>
-        </div>
-
-        <div class="card">
-          <span class="card-label">Lutas registradas</span>
-
-          <p class="card-valor" id="totalLutas">0</p>
-        </div>
-
-        <div class="card">
-          <span class="card-label">Média dos eventos</span>
-
-          <p class="card-valor" id="mediaEventos">—</p>
-        </div>
-
-        <div class="card">
-          <span class="card-label">Melhor evento</span>
-
-          <p class="card-valor card-nome" id="melhorEvento">—</p>
-
-          <span class="card-sub" id="notaMelhor"></span>
-        </div>
-      </section>
-
-      <section class="ultimos-eventos">
-        <h2 class="section-title">Últimos eventos</h2>
-
-        <div id="listaEventos"></div>
-      </section>
-    </main>
-
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="./js/cloud-sync.js"></script>
-    <script src="./js/sidebar.js"></script>
-    <script src="./js/dashboard.js"></script>
+      for (let i = 0; i < total; i++) {
+        const p = document.createElement("div");
+        p.classList.add("particula");
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.setProperty("--dur", 4 + Math.random() * 8 + "s");
+        p.style.setProperty("--delay", Math.random() * 6 + "s");
+        p.style.width = p.style.height = 1 + Math.random() * 3 + "px";
+        // alterna entre vermelho e branco
+        p.style.background = Math.random() > 0.7 ? "#ffffff" : "#d20a0a";
+        bg.appendChild(p);
+      }
+    </script>
   </body>
 </html>

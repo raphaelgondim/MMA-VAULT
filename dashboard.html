@@ -2,18 +2,18 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Eventos</title>
+    <title>Dashboard — MMA Vault</title>
 
-    <link rel="stylesheet" href="./css/eventos.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
   </head>
-
   <body>
     <aside class="sidebar">
       <div class="logo">
         <h1>MMA VAULT</h1>
 
-        <p>Seu arquivo pessoal do MMA</p>
+        <p>Seu arquivo pessoal do UFC</p>
       </div>
 
       <nav>
@@ -40,27 +40,49 @@
         </div>
       </div>
     </aside>
+
     <main>
       <header class="topo">
         <div>
-          <h1>Eventos Avaliados</h1>
+          <h1>Dashboard</h1>
 
-          <p>Todos os eventos que você já cadastrou.</p>
-        </div>
-
-        <div class="acoes">
-          <input type="text" id="pesquisa" placeholder="Pesquisar evento..." />
-
-          <select id="ordenacao">
-            <option value="novo">Mais recentes</option>
-
-            <option value="antigo">Mais antigos</option>
-
-            <option value="nota">Melhor nota</option>
-          </select>
+          <p>Visão geral do seu arquivo UFC.</p>
         </div>
       </header>
-      <section id="gridEventos"></section>
+
+      <section class="cards">
+        <div class="card">
+          <span class="card-label">Eventos avaliados</span>
+
+          <p class="card-valor" id="totalEventos">0</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Lutas registradas</span>
+
+          <p class="card-valor" id="totalLutas">0</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Média dos eventos</span>
+
+          <p class="card-valor" id="mediaEventos">—</p>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Melhor evento</span>
+
+          <p class="card-valor card-nome" id="melhorEvento">—</p>
+
+          <span class="card-sub" id="notaMelhor"></span>
+        </div>
+      </section>
+
+      <section class="ultimos-eventos">
+        <h2 class="section-title">Últimos eventos</h2>
+
+        <div id="listaEventos"></div>
+      </section>
     </main>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -68,7 +90,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="./js/cloud-sync.js"></script>
     <script src="./js/sidebar.js"></script>
-    <script src="./js/ranking-engine.js"></script>
-    <script src="./js/eventos.js"></script>
+    <script src="./js/dashboard.js"></script>
   </body>
 </html>
